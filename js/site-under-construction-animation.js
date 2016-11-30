@@ -1,3 +1,8 @@
+/*
+Not used after swapping to css background animation
+ */
+
+
 function sprite (options) {
 
     var that = {},

@@ -1,0 +1,45 @@
+@import "reset";
+@import "fonts";
+
+.loading-screen{
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.flex__center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  font-family: LatoBlack;
+  font-size: 18px;
+}
+
+.plane {
+  width: 658px;
+  height: 420px;
+  margin-bottom: 50px;
+
+  background-image: url("../images/sprite/plane-sprite.png");
+
+  animation: play 3s steps(35) infinite;
+}
+
+@keyframes play {
+  from { background-position:    0px; }
+  to { background-position: -23030px; }
+}
+
+.world-map, #worldMapObject{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.world-map svg{
+  width: 100%;
+  height: 100%;
+}
