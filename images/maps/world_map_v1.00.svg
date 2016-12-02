@@ -23,9 +23,6 @@
 	.st17{fill:#C9EAE4;}
 	.st18{fill:#B2E6EA;}
 	.st19{fill:#8DD2C6;}
-    .pin:hover{
-        cursor: pointer;
-    }
 </style>
 <defs>
     <filter id="blur_1" x="0" y="0">
@@ -10926,13 +10923,6 @@
 		"/>
 	<polygon class="st19" points="426.672821,156.000824 426.6824646,155.9906921 426.6824646,155.9906311 	"/>
 	<polygon class="st10" points="408.4729309,147.4555359 408.4729309,147.4552917 408.3383484,147.280304 	"/>
-    <g stroke="null" class="pin usa">
-        <g stroke="null" transform="matrix(0.07848702293856437,0,0,0.07848702293856437,220.0087391689799,104.27427750970605) " id="svg_242">
-            <line stroke="#ffffff" fill="none" stroke-width="10" fill-opacity="null" x1="-428.808447" y1="517.643142" x2="-428.808447" y2="595.444937" id="svg_237" stroke-linejoin="null" stroke-linecap="null"/>
-            <ellipse stroke="#f57e20" fill="#f57e20" stroke-width="1.5" cx="-429.286926" cy="466.363968" id="svg_236" rx="53.5" ry="53.5"/>
-            <ellipse stroke="#ffffff" fill="#fff" stroke-width="1.5" cx="-413.001212" cy="447.249987" id="svg_235" rx="25.714286" ry="25.714286"/>
-        </g>
-    </g>
 </g>
 <polygon class="st17" points="614.5557251,167.8034668 614.4539185,167.8034668 614.2841187,167.4527588 613.9334717,167.3283691 
 	613.7299805,167.4414673 613.7639771,167.65625 613.4810791,167.7580566 613.1417847,168.1427612 612.8251343,168.6855469 

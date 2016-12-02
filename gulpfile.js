@@ -8,7 +8,7 @@ var gulp = require('gulp'),
     // source = require('vinyl-source-stream'),
     // tsify = require("tsify"),
     ts = require('gulp-typescript'),
-    deployTarget = '../dist';
+    deployTarget = './dist';
 
 'use strict';
 
@@ -47,9 +47,10 @@ gulp.task('clean', function() {
 });
 
 gulp.task('deploy', ['clean', 'sass', 'bundle-ts'], function () {
-    gulp.src(['./style.css', './*.php']).pipe(gulp.dest(deployTarget));
+    gulp.src('./css/*.*').pipe(gulp.dest(deployTarget + '/css'));
     gulp.src('./js/*.*').pipe(gulp.dest(deployTarget + '/js'));
-    gulp.src('./images/*.*').pipe(gulp.dest(deployTarget + '/img'));
+    gulp.src('./images/**/*.*').pipe(gulp.dest(deployTarget + '/images'));
     gulp.src('./fonts/*.*').pipe(gulp.dest(deployTarget + '/fonts'));
+    gulp.src('./lokacje/*.*').pipe(gulp.dest(deployTarget + '/lokacje'));
     gulp.src('./index.html').pipe(gulp.dest(deployTarget));
 });

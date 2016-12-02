@@ -1,17 +1,64 @@
+function onCountryLeaveFunction(paths:NodeListOf<Element>, $countryInfoDiv:JQuery, activePins:any) {
+    $(paths)
+        .stop()
+        .animate({
+            'opacity': 1
+        }, 150, () => {
+            $(paths).removeAttr('style');
+        })
+        .removeAttr('filter');
 
-let object:any,
-    objectDoc:any,
-    svg:any,
-    panZoom:any;
+    $countryInfoDiv
+        .removeClass('active');
+
+    hidePins(activePins);
+}
+
+function hidePins(activePins:any) {
+    if (activePins) {
+        activePins
+            .css({
+                display: 'none'
+            })
+    }
+}
 
 window.onload=function() {
-    object = document.getElementById("worldMapObject");
-    objectDoc = object.contentDocument;
-    svg = objectDoc.childNodes[1];
 
+    $('.loading-screen')
+        .animate({
+            opacity : 0
+        }, 500 , () => {
+            $('.loading-screen').css({
+                display: 'none'
+            })
+        });
+
+
+    let object:any = document.getElementById("worldMapObject"),
+        objectDoc:any = object.contentDocument,
+        svg:any = objectDoc.childNodes[1],
+        panZoom:any,
+        countryInfoDiv:HTMLElement = document.getElementById('country-info'),
+        pins = objectDoc.getElementsByClassName('pin'),
+        $countryInfoDiv:JQuery = $(countryInfoDiv),
+        $locationDiv:JQuery = $('#location-info');
+
+    // Hide pins
+    hidePins($(pins));
+
+    $(svg).mousemove( (e) => {
+        $countryInfoDiv
+            .css({
+                top: e.clientY - 15,
+                left: e.clientX
+            });
+    });
+
+    //SVG Pan zoom initialization
     function initWorldPan() {
-        var beforePan = function(oldPan:any, newPan:any){
-            var stopHorizontal = false
+        let beforePan = function(oldPan:any, newPan:any){
+            let stopHorizontal = false
                 , stopVertical = false
                 , gutterWidth = window.innerWidth/2
                 , gutterHeight = window.innerHeight/2
@@ -39,49 +86,143 @@ window.onload=function() {
     }
     initWorldPan();
 
+    // On resize handlers
     $(window).resize(function(){
         panZoom.destroy();
         initWorldPan();
     });
 
-    var paths = objectDoc.querySelectorAll('path, polygon');
-    var paths = document.getElementsByTagName('path');
+
+    let paths = objectDoc.querySelectorAll('path, polygon'),
+        activePins: any;
+    // var paths = document.getElementsByTagName('path');
+
     for (var i = 0, len = paths.length; i < len; i++) {
 
         var el = $(paths[i]);
 
-        el.mouseover(function() {
+        el.mouseover(function( ) {
             var self = $(this);
             // self.toFront();
             self.attr({
                 cursor: 'pointer',
             });
-            self.css({
-                // fill: '#FF0000'
-            });
+            // Blur and add opacity to elements that are not currently hovered
             for (var j = 0, len = paths.length; j < len; j++) {
                 if( this != paths[j]){
                     $(paths[j])
-                        .css({
-                            'opacity' : 0.5
-                        })
+                        .stop()
+                        .animate({
+                            'opacity' : 0.8
+                        } , 150)
                         .attr({
                             'filter':'url(\'#blur_1\')'
                         })
                 }
             }
+
+            // Countries with pins
+            if(this.id == 'usa'){
+                showCountryInfoBox();
+            } else {
+                hideCountryInfoBox();
+                hidePins(activePins);
+            }
         });
-        el.mouseout(function() {
-            var self = $(this);
-            $(paths)
-                .removeAttr('style')
-                .removeAttr('filter');
+        el.mouseout(function(e) {
+            let targetInPins: boolean = false,
+                pathContainingPin = e.delegateTarget,
+                goingTo = ( e.relatedTarget && e.relatedTarget.parentElement && e.relatedTarget.parentElement.parentElement ) ? e.relatedTarget.parentElement.parentElement : null ;
+
+            let mouseleaveFromPin = function() {
+                console.log(e.relatedTarget);
+                console.log(pathContainingPin);
+                if ( e.relatedTarget != pathContainingPin){
+                    onCountryLeaveFunction(paths, $countryInfoDiv, activePins);
+                }
+                $('body')
+                    .off('mouseleave' , $(goingTo).selector , mouseleaveFromPin);
+            };
+
+            $(pins).each((i, el) => {
+                if ( el == goingTo ){
+                    targetInPins = true;
+                }
+            });
+
+            if( !targetInPins ){
+                onCountryLeaveFunction(paths, $countryInfoDiv, activePins);
+            } else {
+                $(goingTo).mouseleave(function () {
+                    $('body')
+                        .on('mouseleave' , $(goingTo).selector , mouseleaveFromPin );
+                } )
+            }
+
         });
         el.click(function() {
-            // this.animate({
-            //     fill: 'green'
-            // }, 200);
         });
+
+        // Pins
+        $(pins)
+            .mouseover(function (e) {
+                hideCountryInfoBox();
+                showLocationInfo();
+            })
+            .mouseleave(() => {
+                hideLocationInfo();
+            })
+            .click(() => {
+                window.location.href = window.location.protocol + '//' + window.location.hostname + "/lokacje/pierwszalokacja.html";
+            })
+    }
+
+    // utility functions
+
+    function showCountryInfoBox() {
+        $countryInfoDiv
+            .addClass('active');
+
+        activePins = $(pins)
+            .filter('.usa');
+
+        if (activePins) {
+            activePins
+                .css({
+                    display: 'block'
+                });
+
+            let countryBoxText:string = activePins.length;
+            switch (activePins.length) {
+                case 1 : {
+                    countryBoxText += ' wpis';
+                    break;
+                }
+                case 2 :
+                case 3 :
+                case 4 : {
+                    countryBoxText += ' wpisy';
+                    break;
+                }
+                default : {
+                    countryBoxText += ' wpisów';
+                    break;
+                }
+            }
+            document.getElementsByClassName('country-info__text')[0].innerHTML = countryBoxText;
+        }
+    }
+    function hideCountryInfoBox() {
+        $countryInfoDiv
+            .removeClass('active');
+    }
+    function showLocationInfo() {
+        $locationDiv
+            .addClass('active');
+    }
+    function hideLocationInfo() {
+        $locationDiv
+            .removeClass('active');
     }
 
 };

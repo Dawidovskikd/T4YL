@@ -8,21 +8,39 @@
 </head>
 <body>
 
-<!--<div class="flex__center loading-screen">-->
-
-    <!-- Oversampling canvas -->
+<div class="flex__center loading-screen">
     <!--<canvas width="1200" height="800" id="plane" class="plane"></canvas>-->
-
-    <!--<div class="plane"></div>-->
-    <!--<h1>Site under construction</h1>-->
-
-<!--</div>-->
+    <div class="plane"></div>
+</div>
 
 <main id="rsr" class="world-map fill-screen">
     <object id="worldMapObject"  data="./images/maps/world_map.svg" type="image/svg+xml">
         Your browser doesn't support SVG
     </object>
 </main>
+
+<div class="country-info" id="country-info">
+    <div class="arrow-left"></div>
+    <div class="country-info__text"></div>
+</div>
+
+<div class="location_info" id="location-info" >
+    <img src="images/locations/template.jpg">
+    <h3>Warszawa</h3>
+    <p>
+        Autobusem, pociągiem, samochodem, samolotem.
+    </p>
+    <p>
+        Do wyboru, do koloru.
+        Z Warszawy kilkanaście razy każdego dnia.
+        Dla każdego coś mniej lub bardziej dostępnego.
+        Podróż na każdą kieszeń.
+        Na miejscu setki, a pewniej tysiące hosteli, moteli, hoteli i ‘airbnb’-owych mieszkań.
+        Dla każdego coś mniej lub bardziej dostępnego.
+        Nocleg na każdą kieszeń.
+    </p>
+
+</div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.6/raphael.min.js"></script>
