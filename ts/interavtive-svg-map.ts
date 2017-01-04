@@ -203,6 +203,10 @@ window.onload=function() {
                     window.location.href = redirect + "sri_lanka.html";
                     break;
                 }
+                case '229' : {
+                    window.location.href = redirect + "sri_lanka_2.html";
+                    break;
+                }
                 //Genewa
                 case '241' : {
                     window.location.href = redirect + "genewa.html";

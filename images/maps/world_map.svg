@@ -10966,6 +10966,13 @@
             <ellipse stroke="#ffffff" fill="#fff" stroke-width="1.5" cx="2736.87776" cy="1059.3052" id="svg_235" rx="25.71429" ry="25.71429"/>
         </g>
     </g>
+    <g id="svg_229" class="pin sri_lanka new" stroke="null" data-country="sri_lanka">
+        <g id="svg_230" transform="matrix(0.07848702293856437,0,0,0.07848702293856437,220.0087391689799,104.27427750970605) " stroke="null">
+            <line id="svg_231" stroke-linecap="null" stroke-linejoin="null" y2="1231.45981" x2="2718.26349" y1="1153.65801" x1="2718.26349" fill-opacity="null" stroke-width="10" fill="none" stroke="#ffffff"/>
+            <ellipse id="svg_232" ry="53.5" rx="53.5" cy="1102.37884" cx="2717.78501" stroke-width="1.5" fill="#f57e20" stroke="#f57e20"/>
+            <ellipse id="svg_233" ry="25.71429" rx="25.71429" cy="1083.26486" cx="2734.07073" stroke-width="1.5" fill="#fff" stroke="#ffffff"/>
+        </g>
+    </g>
     <g stroke="null" id="svg_241" class="pin switzerland new" data-country="switzerland">
         <g transform="matrix(0.07848702293856437,0,0,0.07848702293856437,220.0087391689799,104.27427750970605) " id="svg_240" stroke="null">
             <line fill="none" stroke-width="10" fill-opacity="null" x1="1287.15536" y1="248.29498" x2="1287.15536" y2="326.09678" id="svg_234" stroke-linejoin="null" stroke-linecap="null" stroke="#ffffff"/>
@@ -10980,5 +10987,4 @@
             <ellipse stroke="#ffffff" fill="#fff" stroke-width="1.5" cx="1554.32354" cy="192.55281" id="svg_245" rx="25.71429" ry="25.71429"/>
         </g>
     </g>
-
 </svg>

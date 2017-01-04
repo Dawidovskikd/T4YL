@@ -53,4 +53,5 @@ gulp.task('deploy', ['clean', 'sass', 'bundle-ts'], function () {
     gulp.src('./fonts/*.*').pipe(gulp.dest(deployTarget + '/fonts'));
     gulp.src('./lokacje/*.*').pipe(gulp.dest(deployTarget + '/lokacje'));
     gulp.src('./index.html').pipe(gulp.dest(deployTarget));
+    gulp.src('./kontakt.html').pipe(gulp.dest(deployTarget));
 });

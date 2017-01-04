@@ -1,6 +1,6 @@
 $(document).ready(function () {
     if ($('.location')[0]) {
-        var $mainImage = $('.main_image'), $gallery = $('.gallery'), $content = $('.content');
+        var $mainImage = $('.main_image'), $gallery = $('.gallery'), $content_1 = $('.content'), $contentParagraphs_1 = $content_1.children();
         $mainImage.slick({
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -19,10 +19,34 @@ $(document).ready(function () {
             centerMode: true,
             lazyLoad: 'ondemand'
         });
+        trunkLastParagraph();
+        function trunkLastParagraph() {
+            var containerHeight = $content_1.height(), currentOffset = 0;
+            console.log(containerHeight);
+            for (var i = 0; i < $contentParagraphs_1.length; i++) {
+                currentOffset += $contentParagraphs_1[i].clientHeight;
+                console.log(currentOffset);
+                if (currentOffset > containerHeight) {
+                    var delta = currentOffset - containerHeight;
+                    $($contentParagraphs_1[i])
+                        .height(Math.floor(($contentParagraphs_1[i].clientHeight - delta) / 14) * 14)
+                        .css({
+                        'padding-bottom': 0,
+                        'margin-bottom': '10px',
+                        'overflow': 'hidden'
+                    });
+                    console.log('Last paragraph');
+                    break;
+                }
+            }
+        }
     }
 });
 function showMoreLocationText() {
-    $('.content').removeClass('excerpt');
+    $('.content')
+        .removeClass('excerpt')
+        .children()
+        .removeAttr('style');
     $('#show-more-button').remove();
 }
 window.onload = function () {
@@ -180,6 +204,10 @@ window.onload = function () {
                 //Sri Lanka
                 case '228': {
                     window.location.href = redirect + "sri_lanka.html";
+                    break;
+                }
+                case '229': {
+                    window.location.href = redirect + "sri_lanka_2.html";
                     break;
                 }
                 //Genewa
