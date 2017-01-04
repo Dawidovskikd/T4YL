@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
+
     <title>Archiwum</title>
 </head>
 <body>
@@ -53,7 +55,11 @@
                 </p>
             </div>
             <div class="column_right">
-                <div class="main_image"><img src="../images/locations/template.jpg"></div>
+                <div class="main_image">
+                    <img src="../images/locations/template.jpg">
+
+                    <img src="../images/locations/template.jpg">
+                </div>
                 <div class="gallery">
                     <img src="../images/locations/template.jpg">
                     <img src="../images/locations/template.jpg">
@@ -99,5 +105,26 @@
         <a></a>
         <a></a>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+    <script>
+        $('.main_image').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.gallery'
+        });
+        $('.gallery').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.main_image',
+            dots: false,
+            focusOnSelect: true,
+            arrow: false
+        });
+</script>
+
 </body>
 </html>

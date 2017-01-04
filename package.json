@@ -4,6 +4,7 @@
   "description": "Web site",
   "main": "index.js",
   "dependencies": {
+    "@types/hammerjs": "^2.0.34",
     "@types/svg-pan-zoom": "^3.3.0",
     "gulp": "^3.9.1"
   },
